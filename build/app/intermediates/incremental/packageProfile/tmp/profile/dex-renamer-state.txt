@@ -1,0 +1,4 @@
+#Tue Jul 25 12:43:53 IST 2023
+base.0=C\:\\Users\\Amar\\Desktop\\Flutter Projects\\app1\\build\\app\\intermediates\\dex\\profile\\mergeDexProfile\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
