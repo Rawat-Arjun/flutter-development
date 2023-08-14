@@ -38,8 +38,8 @@
       "languageVersion": "2.18"
     },
     {
-      "name": "datetime_picker_formfield",
-      "rootUri": "file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/datetime_picker_formfield-2.0.1",
+      "name": "email_validator",
+      "rootUri": "file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/email_validator-2.1.17",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -112,12 +112,6 @@
     {
       "name": "http_parser",
       "rootUri": "file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/http_parser-4.0.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "intl",
-      "rootUri": "file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/intl-0.18.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -224,7 +218,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-08-06T15:37:01.577112Z",
+  "generated": "2023-08-10T08:34:16.716574Z",
   "generator": "pub",
   "generatorVersion": "3.0.6"
 }

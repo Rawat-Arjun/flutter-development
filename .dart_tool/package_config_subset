@@ -22,10 +22,10 @@ collection
 2.18
 file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/collection-1.17.1/
 file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/collection-1.17.1/lib/
-datetime_picker_formfield
+email_validator
 2.12
-file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/datetime_picker_formfield-2.0.1/
-file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/datetime_picker_formfield-2.0.1/lib/
+file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/email_validator-2.1.17/
+file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/email_validator-2.1.17/lib/
 fake_async
 2.12
 file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/fake_async-1.3.1/
@@ -62,10 +62,6 @@ http_parser
 2.12
 file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/http_parser-4.0.2/
 file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/http_parser-4.0.2/lib/
-intl
-2.12
-file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/intl-0.18.1/
-file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/intl-0.18.1/lib/
 js
 2.19
 file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/js-0.6.7/
@@ -128,8 +124,8 @@ file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/vector_math-2.1.4/
 file:///C:/Users/Amar/AppData/Local/Pub/Cache/hosted/pub.dev/vector_math-2.1.4/lib/
 mynotes
 3.0
-file:///C:/Users/Amar/Desktop/Flutter%20Projects/mynotes/
-file:///C:/Users/Amar/Desktop/Flutter%20Projects/mynotes/lib/
+file:///C:/Users/Amar/Desktop/Flutter_Projects/mynotes/
+file:///C:/Users/Amar/Desktop/Flutter_Projects/mynotes/lib/
 sky_engine
 3.0
 file:///C:/flutter/bin/cache/pkg/sky_engine/

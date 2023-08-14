@@ -1,4 +1,8 @@
+import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -8,8 +12,14 @@ class RegisterView extends StatefulWidget {
 }
 
 class _RegisterViewState extends State<RegisterView> {
+  final formkey = GlobalKey<FormState>();
+
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
+
+  // void main(){
+  //   register().getData();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -18,36 +28,151 @@ class _RegisterViewState extends State<RegisterView> {
         centerTitle: true,
         title: const Text('Register Page'),
       ),
-      body: Column(
-        children: [
-          TextField(
-            controller: email,
-            enableSuggestions: false,
-            keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(hintText: 'Email Address'),
-          ),
-          TextField(
-            controller: password, obscureText: true,
-            enableSuggestions: false,
-            //autocorrect: false,
-            decoration: const InputDecoration(hintText: 'Password'),
-          ),
-          Center(
-            child: TextButton(
-                onPressed: () async {}, child: const Text('Sign Up')),
-          ),
-          Center(
-            child: TextButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                    '/login/',
-                    (route) => false,
-                  );
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Form(
+          key: formkey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: email,
+                enableSuggestions: false,
+                keyboardType: TextInputType.emailAddress,
+                autofillHints: const [AutofillHints.email],
+                 validator: (email) {
+                  if (email!.isEmpty) {
+                  return '* Please enter email here';
+                 }
+                 else if (email != null && !EmailValidator.validate(email)){
+                  return '* Enter a Valid Email Address';
+                 }
+                 else {
+                  return null;
+                 }
+                 },
+                // validator: (emailId) =>
+                //     emailId != null && !EmailValidator.validate(emailId)
+                //         ? '* Enter a valid Email Address'
+                //         : null,
+
+                decoration: const InputDecoration(
+                    labelText: 'Email Address', border: OutlineInputBorder()),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              TextFormField(
+                controller: password,
+                obscureText: true,
+                enableSuggestions: false,
+                validator: (value) {
+                  if (value!.isEmpty){
+                    return '* Please enter password here';
+                    }
+                    else if(value.length<6){
+                      return 'Password should contains atleast 6 letters';
+                    }
+                    else{
+                      return null;
+                    }
                 },
-                child: const Text("Go to Login Page")),
-          )
-        ],
+                decoration: const InputDecoration(
+                    labelText: 'Password', border: OutlineInputBorder()),
+              ),
+              Center(
+                child: ElevatedButton(
+                    onPressed: () async {
+                      final form = formkey.currentState!;
+                      if (form.validate()) {
+                        final email_ = email.text;
+                        final password_ = password.text;
+                      }
+
+                      await Firebase.initializeApp(
+                        options: DefaultFirebaseOptions.currentPlatform,
+                      );
+                      final email_ = email.text;
+                      final password_ = password.text;
+                      try {
+                         final UserCredential = await FirebaseAuth.instance
+                          .createUserWithEmailAndPassword(
+                              email: email_, password: password_);
+
+                      print(UserCredential);
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code=='weak-password') {
+                          print(e.runtimeType);
+                          print('Weak passwowrd');
+                          // ignore: use_build_context_synchronously
+                    return showDialog(context: context, builder: ((context) {
+                      return Container(
+                        child: AlertDialog(
+                          title: const Text('You entered weak password. Try some hard one !'),
+                          actions: [
+                            TextButton(onPressed:() {
+                              Navigator.of(context).pushNamedAndRemoveUntil('/register/',
+                              (route) => false);
+                            },
+                            child: const Text('Ok'),)
+                          ],
+                        ),
+                      );
+                    }));
+                        }
+                        else if (e.code=='email-already-in-use'){
+                          print('you have already an account, You can simply login !');
+                          // ignore: use_build_context_synchronously
+                    return showDialog(context: context, builder: ((context) {
+                      return Container(
+                        child: AlertDialog(
+                          title: const Text('''You are already an user of our App.
+click "Login Now"-> to go to login "
+click "Stay"-> to stay here '''),
+                          actions: [
+                            TextButton(onPressed:() {
+                              Navigator.of(context).pushNamedAndRemoveUntil('/login/',
+                              (route) => false);
+                            },
+                            child: const Text('Login Now'),),
+
+                            TextButton(onPressed:() {
+                              Navigator.of(context).pushNamedAndRemoveUntil('/register/',
+                              (route) => false);
+                            },
+                            child: const Text('Stay'),)
+                          ],
+                        ),
+                      );
+                    }));
+                        }  
+                      }
+                    },
+                    child: const Text('Sign Up')),
+              ),
+              Container(
+                child: TextButton(
+                  onPressed: () async {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      '/login/',
+                      (route) => false,
+                    );
+                  },
+                  child: const Text('Already an account!,  Login '),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
+  }
+}
+
+class register {
+  getData() {
+    var PasswordCredential = '';
+    var EmailAuthCredential = '';
+    print(EmailAuthCredential);
+    print(PasswordCredential);
   }
 }
