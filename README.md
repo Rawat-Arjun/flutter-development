@@ -8,6 +8,7 @@ b) Login_screen
 c) Main_screen
 
 In this app, 
+
 i) I used Firebase server for collecting the data of user.
 Through firebase , email address and password are collected as user information.
 
