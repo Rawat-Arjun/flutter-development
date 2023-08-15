@@ -17,3 +17,7 @@ through Email Validation, user get warning if he/she did some mistake while enet
 
 iii) I used alert dialog box which pop-up on the screen (with FireBaseAuth exception) through which user got hint what he/she did wrong.
 
+Aug 15 2023,
+today, I made app to verify the user by sending the email on his/her email address due to which -
+a) app got the user in its database or storage.
+b) user knows that he/she successfully verified in the app and now they can login.
