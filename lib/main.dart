@@ -1,28 +1,29 @@
 import 'dart:core';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mynotes/login_screen.dart';
-import 'package:mynotes/registration_screen.dart';
+import 'package:mynotes/constants/routes.dart';
+import 'package:mynotes/screens/login_screen.dart';
+import 'package:mynotes/screens/registration_screen.dart';
+import 'package:mynotes/screens/verifyEmail_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp();
-  
 
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    title: 'Flutter App',
-    theme: ThemeData(primarySwatch: Colors.blue),
-    home: const RegisterView(),
-
-    
-    routes: {
-      '/notes/': (context) => const notes_view(),
-      '/login/': (context) => const LoginView(),
-      '/register/': (context) => const RegisterView()
-    },
-
-  ));
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'My Notes',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const RegisterView(),
+      routes: {
+        notesRoute: (context) => const notes_view(),
+        loginRoute: (context) => const LoginView(),
+        registerRoute: (context) => const RegisterView(),
+        verifyEmailRoute: (context) => const verifyEmail(),
+      },
+    ),
+  );
 }
 
 enum dropdownMenu { profile, settings, logout }
@@ -70,7 +71,6 @@ class notes_viewState extends State<notes_view> {
         //   ),
         // ),
         appBar: AppBar(
-          
       centerTitle: true,
       title: const Text('My Notes'),
       actions: [
@@ -82,15 +82,6 @@ class notes_viewState extends State<notes_view> {
           },
           itemBuilder: (context) {
             return const [
-              // PopupMenuItem<dropdownMenu>(
-              //   value: dropdownMenu.profile,
-              //   child: Text('Profile'),
-
-              // ),
-              // PopupMenuItem<dropdownMenu>(
-              //   value: dropdownMenu.settings,
-              //   child: Text('settings'),
-              // ),
               PopupMenuItem<dropdownMenu>(
                 value: dropdownMenu.logout,
                 child: Text('Logout'),
@@ -99,14 +90,12 @@ class notes_viewState extends State<notes_view> {
           },
         )
       ],
-    )
-    );
+    ));
   }
 }
 
 Future<bool> showLogoutBox(BuildContext context) {
   return showDialog<bool>(
-    
       context: context,
       builder: (context) {
         return AlertDialog(
@@ -121,7 +110,7 @@ Future<bool> showLogoutBox(BuildContext context) {
                 child: const Text('No')),
             TextButton(
                 onPressed: () {
-                  Navigator.of(context).popAndPushNamed('/login/');
+                  Navigator.of(context).popAndPushNamed(loginRoute);
                 },
                 child: const Text('Yes')),
           ],
