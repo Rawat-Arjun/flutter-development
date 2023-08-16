@@ -1,6 +1,7 @@
 # mynotes
 My First Futter Project-->
 
+1. Firebase_prop Branch
 Aug 14 2023, 
 In this, I made three screens and those are-
 a) Register_screen
@@ -17,6 +18,7 @@ through Email Validation, user get warning if he/she did some mistake while enet
 
 iii) I used alert dialog box which pop-up on the screen (with FireBaseAuth exception) through which user got hint what he/she did wrong.
 
+2. Firebase_prop Branch
 Aug 15 2023,
 today, I made app to verify the user by sending the email on his/her email address due to which -
 a) app got the user in its database or storage.
