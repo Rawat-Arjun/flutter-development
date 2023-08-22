@@ -1,4 +1,3 @@
-import 'dart:core';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mynotes/constants/routes.dart';
@@ -17,80 +16,54 @@ void main() {
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const RegisterView(),
       routes: {
-        notesRoute: (context) => const notes_view(),
-        loginRoute: (context) => const LoginView(),
-        registerRoute: (context) => const RegisterView(),
-        verifyEmailRoute: (context) => const verifyEmail(),
+        Routes.notesRoute: (context) => const notesView(),
+        Routes.loginRoute: (context) => const LoginView(),
+        Routes.registerRoute: (context) => const RegisterView(),
+        Routes.verifyEmailRoute: (context) => const verifyEmail(),
       },
     ),
   );
 }
 
-enum dropdownMenu { profile, settings, logout }
+enum DropDownMenu { logout }
 
-class notes_view extends StatefulWidget {
-  const notes_view({super.key});
+class notesView extends StatefulWidget {
+  const notesView({super.key});
 
   @override
-  State<notes_view> createState() => notes_viewState();
+  State<notesView> createState() => notesViewState();
 }
 
-class notes_viewState extends State<notes_view> {
+class notesViewState extends State<notesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // drawer:  Drawer(
-        //   child: ListView(
-        //     children: const [
-        //       Column(
-        //         children: [
-        //           ListTile(
-        //             title:  Text('Home'),
-        //             leading: Icon(Icons.home),
-        //           ),
-        //           ListTile(
-        //             title:  Text('Remainder'),
-        //             leading: Icon(Icons.report_gmailerrorred_rounded),
-        //           ),ListTile(
-        //             title:  Text('Settings'),
-        //             leading: Icon(Icons.settings),
-        //           ),ListTile(
-        //             title:  Text('Notifications'),
-        //             leading: Icon(Icons.notification_add),
-        //           ),ListTile(
-        //             title:  Text('Privacy Policy'),
-        //             leading: Icon(Icons.privacy_tip),
-        //           ),ListTile(
-        //             title:  Text('Log Out'),
-        //             leading: Icon(Icons.logout),
-        //           )
-
-        //         ],
-        //       )
-        //     ],
-        //   ),
-        // ),
-        appBar: AppBar(
-      centerTitle: true,
-      title: const Text('My Notes'),
-      actions: [
-        PopupMenuButton<dropdownMenu>(
-          onSelected: (value) async {
-            if (value == value) {
-              await showLogoutBox(context);
-            }
-          },
-          itemBuilder: (context) {
-            return const [
-              PopupMenuItem<dropdownMenu>(
-                value: dropdownMenu.logout,
-                child: Text('Logout'),
-              )
-            ];
-          },
-        )
-      ],
-    ));
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          'My Notes',
+        ),
+        actions: [
+          PopupMenuButton<DropDownMenu>(
+            onSelected: (value) async {
+              if (value == value) {
+                await showLogoutBox(context);
+              }
+            },
+            itemBuilder: (context) {
+              return const [
+                PopupMenuItem<DropDownMenu>(
+                  value: DropDownMenu.logout,
+                  child: Text(
+                    'Logout',
+                  ),
+                )
+              ];
+            },
+          )
+        ],
+      ),
+    );
   }
 }
 
@@ -99,20 +72,29 @@ Future<bool> showLogoutBox(BuildContext context) {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Log Out'),
+          title: const Text(
+            'Log Out',
+          ),
           content: const Text(
-              'Are you sure you want to logout from your account ? '),
+            'Are you sure you want to logout from your account ? ',
+          ),
           actions: [
             TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop(false);
-                },
-                child: const Text('No')),
+              onPressed: () {
+                Navigator.of(context).pop(false);
+              },
+              child: const Text(
+                'No',
+              ),
+            ),
             TextButton(
-                onPressed: () {
-                  Navigator.of(context).popAndPushNamed(loginRoute);
-                },
-                child: const Text('Yes')),
+              onPressed: () {
+                Navigator.of(context).popAndPushNamed(Routes.loginRoute);
+              },
+              child: const Text(
+                'Yes',
+              ),
+            ),
           ],
         );
       }).then((value) => value ?? false);

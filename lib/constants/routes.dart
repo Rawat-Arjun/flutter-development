@@ -1,4 +1,6 @@
-const registerRoute = '/register/';
-const loginRoute = '/login/';
-const notesRoute = '/notes/';
-const verifyEmailRoute = '/verifyEmail/';
+class Routes {
+  static const registerRoute = '/register/';
+  static const loginRoute = '/login/';
+  static const notesRoute = '/notes/';
+  static const verifyEmailRoute = '/verifyEmail/';
+}
